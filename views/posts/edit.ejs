@@ -1,0 +1,46 @@
+<%- include("../partials/header") %>
+<div class="container" style="margin-top: 80px;">
+    <div class="row">
+        <h1 style="text-align: center;">Edit <%=Post.title%></h1>
+        <div style="width: 30%; margin: 25px auto;">
+            <form action="/posts/<%=Post._id%>/?_method=PUT" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="newpost[title]" id="" value="<%=Post.title%>">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="newpost[image]" value="<%=Post.image%>"> 
+                </div>
+                <div class="form-group">
+                    <textarea class="form-control" type="text" name="newpost[description]" id=""><%=Post.description%></textarea>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="newpost[author]" id="" value="<%=Post.author%>">
+                </div>
+                <div class="dropdown form-group">
+                    <select class="dropdownbtn btn btn-default dropdown-toggle" name="newpost[type]" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" required>
+                        
+                        <%if(Post.type=='normal'){%>
+                            <option value="" disabled>Type</option>
+                            <option value="normal" selected>Normal</option>
+                            <option value="featured">Featurd</option>
+                        <%}else{%>
+                            <option value="" disabled>Type</option>
+                            <option value="normal">Normal</option>
+                            <option value="featured" selected>Featurd</option>
+                        <%}%>
+                        
+                    </select>
+                    
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-success btn-block">Submit!</button>
+                </div>
+            </form>
+            <a href="/posts/<%=Post._id%>">Go Back!</a>
+        </div>
+        
+        
+    </div>
+   
+</div>
+<%- include("../partials/footer") %>

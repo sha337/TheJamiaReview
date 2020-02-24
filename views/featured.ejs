@@ -1,0 +1,41 @@
+<%- include("partials/header") %>
+
+<div class="container " style="margin-top: 80px;">
+    <div class="row" style="display: flex; flex-wrap: wrap;">
+        <div class="col-lg-6" >
+            <span>
+                <img src="https://tjrexpress.files.wordpress.com/2018/03/cropped-logo.png" alt="" class="brand-image">
+        
+            </span>
+        </div>
+        <div class="col-lg-6 mx-auto ">
+            <span class="youtube-video">
+                <iframe width="480" height="250"
+                src="https://www.youtube.com/embed/ggot6qCNVbI">
+                </iframe>
+            </span>
+        </div>
+    </div>  
+</div>
+
+<div class="container my-5">
+    <h1>Featured Posts</h1>
+    <hr>
+
+    <% Post.forEach(function(article){ %>
+        <% if(article.type==="featured"){ %>
+            <div class="media my-5">
+                <div class="media-left">
+                        <img src="<%= article.image %>" alt="" style="width: 200px;">
+                </div> 
+                <div class="media-body ml-3">
+                    <h4 class="media-heading"><a href="/posts/<%=article._id%>"><%= article.title %></a></h4>
+                    <p><%= article.description.substring(0, 200) %>...</p>
+                </div>  
+            </div>
+        <% } %>
+    <% }) %>
+</div>
+
+
+<%- include("partials/footer") %>
