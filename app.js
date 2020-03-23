@@ -15,7 +15,8 @@ var commentRoutes = require("./routes/comments");
 var postRoutes    = require("./routes/posts");
 var authRoutes    = require("./routes/auth");
 
-mongoose.connect("mongodb://localhost:27017/TJR", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb+srv://Ali:12345@shabz-1fu7s.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
+//mongoose.connect("mongodb://localhost:27017/TJR", {useNewUrlParser: true, useUnifiedTopology: true});
 app.set("view engine", "ejs");
 app.use(bodyparser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
