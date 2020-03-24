@@ -29,7 +29,7 @@
         <% for(var i=l-1; i>=0 && count < 4 ; i-- ){ %>
             <% if(Post[i].type==="featured"){ %>
                 <% count++ %>
-                <div class="col-md-3 col-sm-6 mb-3  text-center">
+                <div class="col-md-3 col-sm-6 col-xs-12 mb-3  text-center">
                     <div class="card" style="width: auto; height: 24rem;">
                         <img class="card-img-top" src="<%=Post[i].image%>" >
                         <div class="card-body">
