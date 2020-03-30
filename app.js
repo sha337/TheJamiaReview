@@ -1,14 +1,15 @@
-var express = require("express"),
-    app     = express(),
-    bodyparser = require("body-parser"),
-    mongoose = require("mongoose"),
-    passport = require("passport"),
-    LocalStrategy = require("passport-local"),
+var express        = require("express"),
+    app            = express(),
+    bodyparser     = require("body-parser"),
+    mongoose       = require("mongoose"),
+    passport       = require("passport"),
+    LocalStrategy  = require("passport-local"),
     methodOverride = require("method-override"),
-    Comment = require("./models/comment"),
-    Post    = require("./models/post"),
-    User    = require("./models/user"),
-    seedDB  = require("./seed");
+    flash          = require('connect-flash'),
+    Comment        = require("./models/comment"),
+    Post           = require("./models/post"),
+    User           = require("./models/user"),
+    seedDB         = require("./seed");
 
 //requiring routes
 var commentRoutes = require("./routes/comments");
@@ -21,6 +22,7 @@ app.set("view engine", "ejs");
 app.use(bodyparser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
+app.use(flash());
 
 // seedDB();
 // Post.create(
@@ -46,6 +48,7 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(function(req, res ,next){
     res.locals.currentUser = req.user;
+    res.locals.message = req.flash("error");
     next();
 });
 

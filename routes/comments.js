@@ -4,15 +4,15 @@ var Post     = require("../models/post");
 var Comment  = require("../models/comment");
 
 //SHOW ADD COMMENT PAGE - Add comment to post
-router.get("/posts/:id/comments/new", isLoggedIn, function(req, res){
-    Post.findById(req.params.id, function(err, post){
-        if(err){
-            console.log(err);
-        }else{
-            res.render("comments/new", {post: post});
-        }
-    });
-});
+// router.get("/posts/:id/comments/new", isLoggedIn, function(req, res){
+//     Post.findById(req.params.id, function(err, post){
+//         if(err){
+//             console.log(err);
+//         }else{
+//             res.render("comments/new", {post: post});
+//         }
+//     });
+// });
 
 
 //Post comment and redirects back to show page
@@ -56,7 +56,8 @@ function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
         return next();
     }
-    res.redirect("/login");
+    req.flash("error", "Please Login First!");
+    res.redirect("back");
 }
 
 module.exports = router;
