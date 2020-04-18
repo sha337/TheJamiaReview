@@ -77,5 +77,5 @@ app.use(postRoutes);
 app.use(authRoutes);
 
 app.listen(process.env.PORT||'3000', process.env.IP, function(){
-    console.log("TJR server is running");
+    console.log("TJR server is running on port 3000");
 });

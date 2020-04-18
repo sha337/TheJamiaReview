@@ -10,7 +10,7 @@
         </div>
         <div class="col-lg-6 mx-auto ">
             <span class="youtube-video">
-                <iframe width="480" height="250"
+                <iframe width="480" height="200"
                 src="https://www.youtube.com/embed/ggot6qCNVbI">
                 </iframe>
             </span>
@@ -24,13 +24,13 @@
 
     <% Post.forEach(function(article){ %>
         <% if(article.type==="featured"){ %>
-            <div class="media my-5">
+            <div class="media my-5" data-aos="zoom-in-up" data-aos-once="true" data-aos-duration="800">
                 <div class="media-left">
                         <img src="<%= article.image %>" alt="" style="width: 200px;">
                 </div> 
                 <div class="media-body ml-3">
-                    <h4 class="media-heading"><a href="/posts/<%=article._id%>"><%= article.title %></a></h4>
-                    <p><%= article.description.substring(0, 200) %>...</p>
+                    <h4 class="media-heading"><a href="/posts/<%=article._id%>"><%- article.title %></a></h4>
+                    <p><%- article.description.substring(0, 200) %>...</p>
                 </div>  
             </div>
         <% } %>

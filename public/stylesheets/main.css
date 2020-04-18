@@ -389,3 +389,11 @@ a:hover {
 		height: 200px;
 	}
 }
+
+.card-post:hover{
+	transform: scale(1.1);
+}
+
+.card-post{
+	transition: transform 1s;
+}
