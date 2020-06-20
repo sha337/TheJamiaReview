@@ -10,7 +10,7 @@
                 <img class="img-fluid img-thumbnail" src="<%= Post.image %>" alt="">
                 <div class="caption-full caption my-3">
                     <p style="font-family: 'Lora';"><%- Post.description %></p> 
-                    <p><strong>Submitted By: </strong><%= Post.author %></p>
+                    <p><strong>Submitted By: </strong><%- Post.author %></p>
                     <div class="content">
                         <span><%= Post.created.toDateString() %></span>
                     </div>

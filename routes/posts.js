@@ -2,43 +2,61 @@
 var express = require("express");
 var router  = express.Router();
 var Post    = require("../models/post");
+const mongoosePaginate = require('mongoose-paginate');
 
-router.get("/", function(req, res){
-    res.redirect("/posts");
+router.get("/", (req, res) => {
+    res.redirect("/index");
 })
 
-//index - Show all posts
-router.get("/posts", function(req, res){
-    Post.find({}, function(err, allPosts){
+//index - Show recent posts
+router.get("/index", (req, res) => {
+    Post.find({}).sort({_id: -1}).exec((err, allPosts) => {
         if(err){
             console.log(err);
         }else{
             res.render("posts/index", {Post: allPosts});
         }
     });
+});
+
+
+// show all posts
+router.get("/allPosts", (req, res) => {
+    Post.paginate({},{
+        sort: {_id: -1},
+        page: req.query.page || 1,
+        limit: 7
+    }, (err, allPosts) => {
+        if(err){
+            console.log(err);
+        }else{
+            allPosts.page = Number(allPosts.page);
+            res.render("posts/allposts", {Post: allPosts});
+        }
+    });
     
 });
 
 //Display Submission Page
-router.get("/posts/new", isLoggedIn, function(req, res){
+router.get("/posts/new", isLoggedIn, (req, res) => {
     res.render("posts/new");
 });
 
 //CREATE - Add new post to the database and redirect index page
-router.post("/posts", isLoggedIn, function(req, res){
+router.post("/index", isLoggedIn, (req, res) => {
     //create a new post and add to DB
-    Post.create(req.body.newpost, function(err, newPost){
+    Post.create(req.body.newpost, (err, newPost) => {
         if(err){
             console.log(err);
         }else{
-            res.redirect("/posts");
+            res.redirect("/posts/index");
         }
     });
 });
 
 //Show - shows more info about a post
-router.get("/posts/:id", function(req, res){
-    Post.findById(req.params.id).populate("comments").exec(function(err, foundPost){ 
+router.get("/posts/:id", (req, res) => {
+    Post.findById(req.params.id).populate("comments").exec((err, foundPost) => { 
         if(err){
             console.log(err);
         }else{
@@ -48,8 +66,8 @@ router.get("/posts/:id", function(req, res){
 });
 
 //EDIT - Show edit page
-router.get("/posts/:id/edit", function(req, res){
-    Post.findById(req.params.id, function(err, foundPost){
+router.get("/posts/:id/edit", (req, res) => {
+    Post.findById(req.params.id, (err, foundPost) => {
         if(err){
             console.log(err);
         }else{
@@ -59,8 +77,8 @@ router.get("/posts/:id/edit", function(req, res){
 });
 
 //EDIT - add changes to DB and show post
-router.put("/posts/:id", function(req, res){
-    Post.findByIdAndUpdate(req.params.id, req.body.newpost, function(err, updatedPost){
+router.put("/posts/:id", (req, res) => {
+    Post.findByIdAndUpdate(req.params.id, req.body.newpost, (err, updatedPost) => {
         if(err){
             console.log(err);
             res.redirect("/posts/"+updatedPost._id);
@@ -70,13 +88,13 @@ router.put("/posts/:id", function(req, res){
     });
 });
 
-router.delete("/posts/:id", isLoggedIn, function(req, res){
-    Post.findOneAndRemove({_id:req.params.id}, function(err){
+router.delete("/posts/:id", isLoggedIn, (req, res) => {
+    Post.findOneAndRemove({_id:req.params.id}, (err) => {
         if(err){
             console.log(err);
-            res.redirect("/posts");
+            res.redirect("posts/index");
         }else{
-            res.redirect("/posts");
+            res.redirect("posts/index");
         }
     });
 });

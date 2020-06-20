@@ -1,38 +1,31 @@
-var express        = require("express"),
-    app            = express(),
-    bodyparser     = require("body-parser"),
-    mongoose       = require("mongoose"),
-    passport       = require("passport"),
-    LocalStrategy  = require("passport-local"),
-    methodOverride = require("method-override"),
-    flash          = require('connect-flash'),
-    Comment        = require("./models/comment"),
-    Post           = require("./models/post"),
-    User           = require("./models/user"),
-    seedDB         = require("./seed");
+const express        = require("express"),
+      app            = express(),
+      bodyparser     = require("body-parser"),
+      mongoose       = require("mongoose"),
+      passport       = require("passport"),
+      LocalStrategy  = require("passport-local"),
+      methodOverride = require("method-override"),
+      flash          = require('connect-flash'),
+      Comment        = require("./models/comment"),
+      Post           = require("./models/post"),
+      User           = require("./models/user"),
+      seedDB         = require("./seed"),
+      csv            = require('csvtojson');
 
 //requiring routes
-var commentRoutes = require("./routes/comments");
-var postRoutes    = require("./routes/posts");
-var authRoutes    = require("./routes/auth");
+const commentRoutes = require("./routes/comments");
+const postRoutes    = require("./routes/posts");
+const authRoutes    = require("./routes/auth");
 
-mongoose.connect("mongodb+srv://Ali:12345@shabz-1fu7s.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
-//mongoose.connect("mongodb://localhost:27017/TJR", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true, useUnifiedTopology: true});
+
 app.set("view engine", "ejs");
 app.use(bodyparser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
 
-// seedDB();
-// Post.create(
-//     {
-//     title: "Blog post",  
-//     image: "https://image.shutterstock.com/image-photo/bloggingblog-concepts-ideas-white-worktable-260nw-1029506242.jpg",
-//     description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum", 
-//     author: "Abhay",
-//     type: "featured"
-// });
+const convert = csv()
 
 //passport configuration
 app.use(require("express-session")({
@@ -53,22 +46,11 @@ app.use(function(req, res ,next){
 });
 
 //Remaining routes
-app.get("/featured", function(req, res){
-    Post.find({type: "featured"}, function(err, allPosts){
-        if(err){
-            console.log(err);
-        }else{
-            res.render("featured", {Post: allPosts});
-        }
-    });
-    
-});
-
-app.get("/gallery", function(req, res){
+app.get("/gallery", (req, res) => {
     res.render("gallery");
 });
 
-app.get("/about", function(req, res){
+app.get("/about", (req, res) => {
     res.render("about");
 });
 
@@ -76,6 +58,6 @@ app.use(commentRoutes);
 app.use(postRoutes);
 app.use(authRoutes);
 
-app.listen(process.env.PORT||'3000', process.env.IP, function(){
+app.listen(process.env.PORT||'3000', process.env.IP, ()=>{
     console.log("TJR server is running on port 3000");
 });

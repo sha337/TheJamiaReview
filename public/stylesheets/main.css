@@ -69,6 +69,17 @@ hr{
     display: inline;
 }
 
+.donation-link{
+	background-color: #0A3D62;
+	width: 100%;
+	height: 120px;
+}
+
+.donation-link div p{
+	color: white;
+	font-size: 3vw;
+	font-family: "Times New Roman", Sans-serif;
+}
 
 
 /* footer styles */
@@ -397,3 +408,12 @@ a:hover {
 .card-post{
 	transition: transform 1s;
 }
+
+.donation-link-text:hover{
+	transform: scale(1.01);
+}
+
+.donation-link-text{
+	transition: transform 0.2s;
+}
+
