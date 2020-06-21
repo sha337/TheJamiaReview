@@ -69,18 +69,6 @@ hr{
     display: inline;
 }
 
-.donation-link{
-	background-color: #0A3D62;
-	width: 100%;
-	height: 120px;
-}
-
-.donation-link div p{
-	color: white;
-	font-size: 3vw;
-	font-family: "Times New Roman", Sans-serif;
-}
-
 
 /* footer styles */
 
@@ -409,6 +397,20 @@ a:hover {
 	transition: transform 1s;
 }
 
+/* 
+donation link */
+.donation-link{
+	background-color: #0A3D62;
+	width: 100%;
+	height: 120px;
+}
+
+.donation-link div p{
+	color: white;
+	/* font-size: 3vw; */
+	font-family: "Times New Roman", Sans-serif;
+}
+
 .donation-link-text:hover{
 	transform: scale(1.01);
 }
@@ -417,3 +419,41 @@ a:hover {
 	transition: transform 0.2s;
 }
 
+/* we work for */
+.motto{
+	margin-top: 5%; 
+	font-family: 'Raleway', sans-serif;
+	height: 8vh;
+	font-size: 3rem;
+}
+
+/* cursor */
+
+#changing-text > .txt {
+	border-right: 0.2rem solid #777;
+}
+
+
+@media(min-width: 1200px){
+	.motto-text, .donation-link-text{
+		font-size:	3rem;
+	}
+}
+
+@media(max-width: 1200px){
+	.motto-text, .donation-link-text{
+		font-size:	2.5rem;
+	}
+}
+
+@media(max-width: 800px){
+	.motto-text, .donation-link-text{
+		font-size:	2rem;
+	}
+}
+
+@media(max-width: 500px){
+	.motto-text, .donation-link-text{
+		font-size:	1.6rem;
+	}
+}

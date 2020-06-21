@@ -8,7 +8,7 @@
         
             </span>
         </div>
-        <div class="col-lg-6 mx-auto ">
+        <div class="col-lg-6 mx-auto">
             <span class="youtube-video">
                 <iframe width="480" height="200" src="https://www.youtube.com/embed/UjqXL3PKT8s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </span>
@@ -23,14 +23,15 @@
 
 
         <!-- All posts are here -->
-        <div class="col-md-8 col-sm-12">
+        <div class="col-md-8">
             <h1>All Posts</h1>
             <hr>
             <% var postlen = Post.docs.length %>
             
             <% for(var i=0; i < postlen; i++ ){ %>
-            
-                <div class="media my-5 post-hidden" >
+                
+                <!-- below div is for laptop and tabs -->
+                <div class="media my-5 post-hidden d-none d-sm-block">
                     <div class="media-left">
                             <img src="<%= Post.docs[i].image %>" alt="" style="width: 200px;">
                     </div> 
@@ -39,6 +40,24 @@
                         <p><%- Post.docs[i].description.substring(0, 200) %>...</p>
                     </div>  
                 </div>
+                
+                <!-- below div is for mobile -->
+                <div class="col-md-3 col-sm-6 col-xs-12 mb-3  text-center card-post d-block d-sm-none">
+                    <div class="card" style="width: auto; height: 24rem;">
+                        <a href="/posts/<%=Post.docs[i]._id%>"> 
+                            <img class="card-img-top" src="<%= Post.docs[i].image %>" >
+                        </a>
+                        <div class="card-body">
+                        <a href="/posts/<%=Post.docs[i]._id%>"> 
+                            <h4 class="card-title"><%- Post.docs[i].title %></h4>
+                        </a>
+                        <p class="card-text"><%-Post.docs[i].description.substring(0, 150)%>...</p>
+                        
+                        <!-- <a href="/posts/<%=Post.docs[i]._id%>" class="btn btn-dark">Read More!</a> -->
+                        </div>
+                    </div>
+                </div>
+
             <% } %>
 
 
@@ -68,7 +87,7 @@
        
 
         <!-- Facebook and instageam link -->
-        <div class="col-md-4">
+        <div class="col-md-4 d-none d-xl-block">
             <div>
                 <div class="social-link text-center mb-3">
                     <h1>Facebook</h1>

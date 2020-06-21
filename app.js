@@ -17,6 +17,7 @@ const commentRoutes = require("./routes/comments");
 const postRoutes    = require("./routes/posts");
 const authRoutes    = require("./routes/auth");
 
+//connect datbase
 mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true, useUnifiedTopology: true});
 
 app.set("view engine", "ejs");
