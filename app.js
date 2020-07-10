@@ -16,6 +16,7 @@ const express        = require("express"),
 const commentRoutes = require("./routes/comments");
 const postRoutes    = require("./routes/posts");
 const authRoutes    = require("./routes/auth");
+const paymentRoutes = require("./routes/payment");
 
 //connect datbase
 mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true, useUnifiedTopology: true});
@@ -55,9 +56,12 @@ app.get("/about", (req, res) => {
     res.render("about");
 });
 
+
+
 app.use(commentRoutes);
 app.use(postRoutes);
 app.use(authRoutes);
+app.use(paymentRoutes);
 
 app.listen(process.env.PORT||'3000', process.env.IP, ()=>{
     console.log("TJR server is running on port 3000");

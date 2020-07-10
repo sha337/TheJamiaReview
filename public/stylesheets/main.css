@@ -419,6 +419,16 @@ donation link */
 	transition: transform 0.2s;
 }
 
+.donation-button{
+	background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    
+}
+
+
 /* we work for */
 .motto{
 	margin-top: 5%; 

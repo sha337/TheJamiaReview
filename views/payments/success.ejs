@@ -1,0 +1,21 @@
+<%- include("../partials/header") %>
+
+<div class="py-5">
+    <h1 class="display-3">
+        Thank You <%- txn.firstname %> <%- txn.lastname %>
+    </h1>
+    <p>Your donation will make an impact</p>
+    <!-- transaction details -->
+    <div>
+        <div>
+            <p>Your transaction of amount <%-txn.amount%> is successful</p>
+        </div>
+        <div>
+            <p>Your transaction id is: <%- txn.txnid%></p>
+        </div>
+    </div>
+    <a href="/" class="btn btn-lg btn-dark">Go Back Home</a>
+</div>
+
+
+<%- include("../partials/footer") %>

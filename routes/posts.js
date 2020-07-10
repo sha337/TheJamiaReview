@@ -49,7 +49,7 @@ router.post("/index", isLoggedIn, (req, res) => {
         if(err){
             console.log(err);
         }else{
-            res.redirect("/posts/index");
+            res.redirect("posts/index");
         }
     });
 });
