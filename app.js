@@ -9,7 +9,6 @@ const express        = require("express"),
       Comment        = require("./models/comment"),
       Post           = require("./models/post"),
       User           = require("./models/user"),
-      seedDB         = require("./seed"),
       csv            = require('csvtojson');
 
 //requiring routes
