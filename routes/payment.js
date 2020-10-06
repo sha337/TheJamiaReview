@@ -14,7 +14,8 @@ router.post('/payment_gateway/payumoney', (req, res) => {
     //Here save all the details in pay object 
     const pay = req.body;
     pay.txnid = uniqid.process();
-    const hashString = process.env.key //store in in different file
+    console.log(pay)
+    const hashString = "xQRSB1rh" //store in in different file
      + '|' + pay.txnid
      + '|' + pay.amount 
      + '|' + pay.productinfo 
@@ -24,7 +25,7 @@ router.post('/payment_gateway/payumoney', (req, res) => {
      + '|' + pay.udf2   //phoneno.
      + '|' + pay.udf3   //address
      + '|' + '|||||||' 
-     + process.env.salt //store in in different file
+     + "ojB0LSS5kW" //store in in different file
     const sha = new jsSHA('SHA-512', "TEXT");
     sha.update(hashString);
     //Getting hashed value from sha module
@@ -32,7 +33,7 @@ router.post('/payment_gateway/payumoney', (req, res) => {
      
      //We have to additionally pass merchant key to API
     //  so remember to include it.
-    pay.key = process.env.key //store in in different file;
+    pay.key = "xQRSB1rh" //store in in different file;
     pay.surl = 'https://evening-spire-86727.herokuapp.com/payment/success';
     pay.furl = 'https://evening-spire-86727.herokuapp.com/payment/fail';
     pay.hash = hash;
@@ -95,3 +96,4 @@ router.post('/payment/fail', (req, res) => {
 
 
 module.exports = router;
+

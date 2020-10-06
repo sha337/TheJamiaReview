@@ -19,7 +19,7 @@ const authRoutes    = require("./routes/auth");
 const paymentRoutes = require("./routes/payment");
 
 //connect datbase
-mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb+srv://Ali:12345@shabz-1fu7s.mongodb.net/TJR?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true});
 
 app.set("view engine", "ejs");
 app.use(bodyparser.urlencoded({extended: true}));

@@ -331,9 +331,10 @@ a:hover {
 
 
 #logo{
-	height: 30px;
-	width: 90px;
+	height: 50px;
+	width: 50px;
 	padding: 0;
+	margin: 0;
 }
 
 
