@@ -45,6 +45,7 @@ router.get("/posts/new", isLoggedIn, (req, res) => {
 //CREATE - Add new post to the database and redirect index page
 router.post("/posts", isLoggedIn, (req, res) => {
     //create a new post and add to DB
+    console.log(req.body);
     Post.create(req.body.newpost, (err, newPost) => {
         if(err){
             console.log(err);
